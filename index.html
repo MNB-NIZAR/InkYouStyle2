@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InkYouStyle - طباعة على الملابس</title>
+    <meta name="description" content="متخصصون في طباعة التصاميم المخصصة على الملابس بجودة عالية وتصاميم إبداعية">
+    <meta name="keywords" content="طباعة ملابس, تيشيرتات مخصصة, هوديات, طباعة مغرب, InkYouStyle">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
@@ -17,9 +19,11 @@
             --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             --gradient-horizontal: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
             --transition: all 0.3s ease;
             --transition-slow: all 0.6s ease;
+            --currency: 'د.م.';
+            --border-radius: 12px;
         }
 
         /* Reset & Base Styles */
@@ -30,16 +34,26 @@
             font-family: 'Tajawal', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--light-color);
             color: var(--dark-color);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--primary-color);
+            color: white;
         }
 
         a {
             text-decoration: none;
             color: inherit;
+            transition: var(--transition);
         }
 
         ul {
@@ -49,6 +63,17 @@
         img {
             max-width: 100%;
             height: auto;
+            display: block;
+        }
+
+        .price::after {
+            content: ' ' var(--currency);
+            font-size: 0.9em;
+        }
+
+        .old-price::after {
+            content: ' ' var(--currency);
+            font-size: 0.8em;
         }
 
         /* Utility Classes */
@@ -65,8 +90,10 @@
         }
 
         .btn {
-            display: inline-block;
-            padding: 12px 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
             background: var(--gradient);
             color: white;
             border: none;
@@ -80,6 +107,8 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            font-size: 0.95rem;
+            gap: 8px;
         }
 
         .btn::before {
@@ -143,14 +172,52 @@
             color: transparent;
         }
 
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        .text-center {
+            text-align: center;
         }
 
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        /* Animations */
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
+        }
+
+        @keyframes floating-lg {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        .floating-lg {
+            animation: floating-lg 4s ease-in-out infinite;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
         }
 
         /* Header */
@@ -165,10 +232,10 @@
         }
 
         header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            padding: 10px 0;
+            padding: 5px 0;
         }
 
         .navbar {
@@ -182,11 +249,11 @@
         .logo {
             display: flex;
             align-items: center;
+            gap: 10px;
         }
 
         .logo img {
             height: 50px;
-            margin-left: 10px;
             transition: var(--transition);
         }
 
@@ -197,6 +264,7 @@
             background-clip: text;
             color: transparent;
             transition: var(--transition);
+            font-weight: 800;
         }
 
         .nav-links {
@@ -204,14 +272,15 @@
         }
 
         .nav-links li {
-            margin-left: 30px;
+            margin-left: 25px;
         }
 
         .nav-links a {
-            font-weight: bold;
+            font-weight: 700;
             transition: var(--transition);
             position: relative;
-            padding: 5px 0;
+            padding: 8px 0;
+            font-size: 0.95rem;
         }
 
         .nav-links a::after {
@@ -220,9 +289,10 @@
             bottom: 0;
             right: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: var(--gradient);
             transition: var(--transition);
+            border-radius: 3px;
         }
 
         .nav-links a:hover::after {
@@ -239,6 +309,7 @@
             cursor: pointer;
             font-size: 1.5rem;
             transition: var(--transition);
+            padding: 5px;
         }
 
         .hamburger:hover {
@@ -248,6 +319,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
+            min-height: 700px;
             background: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
             display: flex;
             align-items: center;
@@ -297,6 +369,7 @@
             font-size: 1.2rem;
             margin-bottom: 30px;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            opacity: 0.9;
         }
 
         .hero-btns {
@@ -311,6 +384,71 @@
             background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgY3g9IjIwIiBjeT0iMjAiIHI9IjEiLz48Y2lyY2xlIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIGN4PSIyMCIgY3k9IjIwIiByPSIyIi8+PGNpcmNsZSBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBjeD0iMjAiIGN5PSIyMCIgcj0iMyIvPjxjaXJjbGUgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgY3g9IjIwIiBjeT0iMjAiIHI9IjQiLz48Y2lyY2xlIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIGN4PSIyMCIgY3k9IjIwIiByPSI1Ii8+PC9nPjwvc3ZnPg==');
             opacity: 0.5;
             z-index: 0;
+        }
+
+        /* Special Offer Banner */
+        .offer-banner {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgY3g9IjIwIiBjeT0iMjAiIHI9IjEiLz48Y2lyY2xlIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIGN4PSIyMCIgY3k9IjIwIiByPSIyIi8+PGNpcmNsZSBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBjeD0iMjAiIGN5PSIyMCIgcj0iMyIvPjxjaXJjbGUgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgY3g9IjIwIiBjeT0iMjAiIHI9IjQiLz48Y2lyY2xlIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIGN4PSIyMCIgY3k9IjIwIiByPSI1Ii8+PC9nPjwvc3ZnPg==');
+            opacity: 0.3;
+            animation: rotate 20s linear infinite;
+        }
+
+        .offer-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .offer-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .offer-text i {
+            font-size: 1.3rem;
+        }
+
+        .offer-timer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timer-segment {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .timer-value {
+            font-weight: bold;
+            min-width: 25px;
+            text-align: center;
         }
 
         /* About Section */
@@ -347,12 +485,14 @@
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: var(--dark-color);
+            line-height: 1.3;
         }
 
         .about-text p {
             margin-bottom: 20px;
             font-size: 1.1rem;
             line-height: 1.8;
+            color: #555;
         }
 
         .about-features {
@@ -379,12 +519,19 @@
             justify-content: center;
             font-size: 1.2rem;
             flex-shrink: 0;
+            box-shadow: var(--shadow);
         }
 
         .feature-text h4 {
             font-size: 1.2rem;
             margin-bottom: 5px;
             color: var(--primary-color);
+        }
+
+        .feature-text p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0;
         }
 
         .about-image {
@@ -394,10 +541,11 @@
         }
 
         .about-image img {
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow-lg);
             transform: rotateY(-10deg);
             transition: var(--transition-slow);
+            border: 5px solid white;
         }
 
         .about-image:hover img {
@@ -412,7 +560,7 @@
             width: 100%;
             height: 100%;
             border: 3px solid var(--primary-color);
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             z-index: -1;
             transition: var(--transition-slow);
         }
@@ -426,6 +574,7 @@
         .services {
             background: linear-gradient(rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9)), url('https://images.unsplash.com/photo-1520006403909-838d6b92c22e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
             position: relative;
+            background-attachment: fixed;
         }
 
         .services::after {
@@ -450,13 +599,14 @@
         .service-card {
             background: white;
             padding: 40px 30px;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
             text-align: center;
             position: relative;
             overflow: hidden;
             z-index: 1;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .service-card::before {
@@ -473,6 +623,7 @@
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
         }
 
         .service-card:hover::before {
@@ -516,6 +667,83 @@
             width: 80px;
         }
 
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--gradient);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxjaXJjbGUgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgY3g9IjIwIiBjeT0iMjAiIHI9IjEiLz48Y2lyY2xlIGZpbGw9InJnYmEoMjU1LDI11LDI1NSwwLjA1KSIgY3g9IjIwIiBjeT0iMjAiIHI9IjIiLz48Y2lyY2xlIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIGN4PSIyMCIgY3k9IjIwIiByPSIzIi8+PGNpcmNsZSBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBjeD0iMjAiIGN5PSIyMCIgcj0iNCIvPjxjaXJjbGUgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgY3g9IjIwIiBjeT0iMjAiIHI9IjUiLz48L2c+PC9zdmc+');
+            opacity: 0.3;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            padding: 30px;
+            position: relative;
+        }
+
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item:last-child::after {
+            display: none;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .stat-number::after {
+            content: '+';
+            position: absolute;
+            top: 0;
+            right: -15px;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
         /* Products Section */
         .products {
             background: white;
@@ -540,6 +768,7 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            font-size: 0.95rem;
         }
 
         .filter-btn::before {
@@ -571,11 +800,12 @@
 
         .product-card {
             background: white;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .product-card::before {
@@ -598,6 +828,7 @@
         .product-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
         }
 
         .product-img {
@@ -628,6 +859,7 @@
             font-size: 0.8rem;
             font-weight: bold;
             z-index: 2;
+            box-shadow: var(--shadow);
         }
 
         .product-info {
@@ -639,12 +871,14 @@
         .product-info h3 {
             font-size: 1.2rem;
             margin-bottom: 10px;
+            color: var(--dark-color);
         }
 
         .product-info p {
             color: #666;
             margin-bottom: 15px;
             font-size: 0.9rem;
+            line-height: 1.6;
         }
 
         .product-price {
@@ -672,7 +906,7 @@
             background: var(--gradient);
             color: white;
             border: none;
-            padding: 8px 20px;
+            padding: 10px 20px;
             border-radius: 50px;
             cursor: pointer;
             transition: var(--transition);
@@ -680,6 +914,7 @@
             align-items: center;
             gap: 8px;
             font-size: 0.9rem;
+            font-weight: bold;
         }
 
         .add-to-cart:hover {
@@ -687,13 +922,67 @@
             box-shadow: 0 5px 15px rgba(106, 17, 203, 0.3);
         }
 
-        /* Team Section - المحسّن */
+        /* Features Section */
+        .features {
+            background: var(--light-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Team Section */
         .team {
             background: linear-gradient(rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80') no-repeat center center/cover;
             color: white;
             text-align: center;
             position: relative;
             overflow: hidden;
+            background-attachment: fixed;
         }
 
         .team::before {
@@ -720,7 +1009,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             padding: 40px 30px;
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
@@ -846,7 +1135,7 @@
         .testimonial {
             background: var(--light-color);
             padding: 40px;
-            border-radius: 15px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             text-align: center;
             display: none;
@@ -899,6 +1188,7 @@
             line-height: 1.8;
             position: relative;
             z-index: 1;
+            color: #555;
         }
 
         .client-info {
@@ -938,66 +1228,77 @@
             transform: scale(1.2);
         }
 
-        /* Stats Section - جديد */
-        .stats {
-            background: var(--gradient);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
+        /* FAQ Section */
+        .faq {
+            background: var(--light-color);
         }
 
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .stat-item {
-            padding: 30px;
-            position: relative;
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .stat-item::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.2);
+        .faq-item:hover {
+            box-shadow: var(--shadow-lg);
         }
 
-        .stat-item:last-child::after {
-            display: none;
-        }
-
-        .stat-number {
-            font-size: 3rem;
+        .faq-question {
+            padding: 20px;
+            background: white;
             font-weight: bold;
-            margin-bottom: 10px;
-            display: inline-block;
-            position: relative;
-        }
-
-        .stat-number::after {
-            content: '+';
-            position: absolute;
-            top: 0;
-            right: -15px;
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .stat-label {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
             font-size: 1.1rem;
-            opacity: 0.9;
+        }
+
+        .faq-question:hover {
+            background: rgba(106, 17, 203, 0.05);
+        }
+
+        .faq-question::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: var(--transition);
+        }
+
+        .faq-question.active::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            background: white;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .faq-answer.show {
+            padding: 0 20px 20px;
+            max-height: 500px;
         }
 
         /* Contact Section */
         .contact {
             background: linear-gradient(rgba(248, 249, 250, 0.9), rgba(248, 249, 250, 0.9)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
             position: relative;
+            background-attachment: fixed;
         }
 
         .contact::before {
@@ -1030,15 +1331,17 @@
             align-items: flex-start;
             gap: 20px;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 25px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .contact-item:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
         }
 
         .contact-icon {
@@ -1052,6 +1355,7 @@
             justify-content: center;
             font-size: 1.2rem;
             flex-shrink: 0;
+            box-shadow: var(--shadow);
         }
 
         .contact-text h3 {
@@ -1063,183 +1367,7 @@
         .contact-text p {
             color: #666;
             line-height: 1.7;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-        }
-
-        .contact-form:hover {
-            transform: translateY(-5px);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: var(--dark-color);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transition);
-            background: rgba(248, 249, 250, 0.5);
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
-            background: white;
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* FAQ Section - جديد */
-        .faq {
-            background: white;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 15px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .faq-item:hover {
-            box-shadow: var(--shadow-lg);
-        }
-
-        .faq-question {
-            padding: 20px;
-            background: var(--light-color);
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        .faq-question:hover {
-            background: rgba(106, 17, 203, 0.05);
-        }
-
-        .faq-question::after {
-            content: '\f078';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            transition: var(--transition);
-        }
-
-        .faq-question.active::after {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: var(--transition);
-            background: white;
-        }
-
-        .faq-answer.show {
-            padding: 20px;
-            max-height: 500px;
-        }
-
-        /* Newsletter Section - جديد */
-        .newsletter {
-            background: var(--gradient);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .newsletter::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-            z-index: 1;
-        }
-
-        .newsletter-content {
-            position: relative;
-            z-index: 2;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .newsletter h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .newsletter p {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .newsletter-form {
-            display: flex;
-            background: white;
-            border-radius: 50px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 15px 25px;
-            border: none;
-            outline: none;
-            font-size: 1rem;
-        }
-
-        .newsletter-form button {
-            background: var(--dark-color);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: var(--transition);
-        }
-
-        .newsletter-form button:hover {
-            background: black;
+            font-size: 0.95rem;
         }
 
         /* Footer */
@@ -1277,10 +1405,12 @@
         .footer-column p {
             margin-bottom: 15px;
             color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
@@ -1289,6 +1419,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 0.95rem;
         }
 
         .footer-links a::before {
@@ -1378,6 +1509,7 @@
             transition: var(--transition);
             box-shadow: var(--shadow-lg);
             z-index: 999;
+            border: none;
         }
 
         .back-to-top.active {
@@ -1387,6 +1519,31 @@
 
         .back-to-top:hover {
             transform: translateY(-5px);
+            background: var(--gradient-horizontal);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            background: #128C7E;
         }
 
         /* Responsive Styles */
@@ -1464,14 +1621,9 @@
                 gap: 15px;
             }
 
-            .newsletter-form {
+            .offer-content {
                 flex-direction: column;
-                border-radius: 10px;
-            }
-
-            .newsletter-form input,
-            .newsletter-form button {
-                border-radius: 10px;
+                gap: 10px;
             }
         }
 
@@ -1489,7 +1641,7 @@
             }
 
             .btn {
-                padding: 10px 20px;
+                padding: 12px 25px;
                 font-size: 0.9rem;
             }
 
@@ -1508,6 +1660,18 @@
                 font-size: 1rem;
                 bottom: 20px;
                 right: 20px;
+            }
+
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                left: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1544,8 +1708,34 @@
                 <h1>صمم ملابسك <span class="text-gradient">بأسلوبك الفريد</span></h1>
                 <p>نقدم لك أحدث خدمات الطباعة على الملابس بجودة عالية وتصاميم مبتكرة تناسب جميع الأذواق والمناسبات.</p>
                 <div class="hero-btns">
-                    <a href="#products" class="btn">تصفح المنتجات</a>
-                    <a href="#contact" class="btn btn-outline">اطلب تصميمك</a>
+                    <a href="#products" class="btn pulse"><i class="fas fa-shopping-bag"></i> تصفح المنتجات</a>
+                    <a href="#contact" class="btn btn-outline"><i class="fas fa-pen-ruler"></i> اطلب تصميمك</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer Banner -->
+    <section class="offer-banner">
+        <div class="container">
+            <div class="offer-content">
+                <div class="offer-text">
+                    <i class="fas fa-gift"></i>
+                    <span>عرض خاص! خصم 25% على جميع التصاميم المخصصة</span>
+                </div>
+                <div class="offer-timer">
+                    <div class="timer-segment">
+                        <span class="timer-value hours">23</span>
+                        <span>س</span>
+                    </div>
+                    <div class="timer-segment">
+                        <span class="timer-value minutes">59</span>
+                        <span>د</span>
+                    </div>
+                    <div class="timer-segment">
+                        <span class="timer-value seconds">59</span>
+                        <span>ث</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1559,6 +1749,7 @@
                 <div class="about-text">
                     <h2>InkYouStyle - رحلة الإبداع والتميز</h2>
                     <p>نحن شركة متخصصة في طباعة التصاميم على الملابس وبيع المنتجات الجاهزة. بدأنا رحلتنا عام 2022 بفريق شاب طموح يسعى لإبراز الإبداع والتميز في عالم الأزياء.</p>
+                    <p>نقدم حلولاً مبتكرة للطباعة على مختلف أنواع الملابس بجودة عالية وأسعار تنافسية، مع إمكانية التخصيص الكامل للتصاميم حسب رغبة العميل.</p>
                     
                     <div class="about-features">
                         <div class="feature-item">
@@ -1585,7 +1776,7 @@
                             </div>
                             <div class="feature-text">
                                 <h4>توصيل سريع</h4>
-                                <p>خدمة توصيل لجميع أنحاء المملكة خلال 48 ساعة</p>
+                                <p>خدمة توصيل لجميع أنحاء المغرب خلال 48 ساعة</p>
                             </div>
                         </div>
                         <div class="feature-item">
@@ -1599,7 +1790,7 @@
                         </div>
                     </div>
                     
-                    <a href="#services" class="btn">اكتشف خدماتنا</a>
+                    <a href="#services" class="btn"><i class="fas fa-arrow-left"></i> اكتشف خدماتنا</a>
                 </div>
                 <div class="about-image">
                     <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="About InkYouStyle" class="floating">
@@ -1632,7 +1823,7 @@
                         <i class="fas fa-truck"></i>
                     </div>
                     <h3>توصيل سريع</h3>
-                    <p>خدمة توصيل سريعة وموثوقة لجميع أنحاء المملكة مع إمكانية تتبع الطلب في أي وقت.</p>
+                    <p>خدمة توصيل سريعة وموثوقة لجميع أنحاء المغرب مع إمكانية تتبع الطلب في أي وقت.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -1676,7 +1867,7 @@
                     <div class="stat-label">شركة متعاقدة</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">98</div>
+                    <div class="stat-number">99</div>
                     <div class="stat-label">نسبة رضا</div>
                 </div>
             </div>
@@ -1704,7 +1895,7 @@
                         <h3>تيشيرت طباعة فنية</h3>
                         <p>تيشيرت قطني عالي الجودة بطباعة فنية دائمة</p>
                         <div class="product-price">
-                            <span class="price">75 ر.س <span class="old-price">99 ر.س</span></span>
+                            <span class="price">199 <span class="old-price">249</span></span>
                             <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> أضف للسلة</button>
                         </div>
                     </div>
@@ -1717,7 +1908,7 @@
                         <h3>هودي شتوي مطرز</h3>
                         <p>هودي شتوي دافئ بتطريز يدوي فاخر</p>
                         <div class="product-price">
-                            <span class="price">150 ر.س</span>
+                            <span class="price">349</span>
                             <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> أضف للسلة</button>
                         </div>
                     </div>
@@ -1731,7 +1922,7 @@
                         <h3>تيشيرت رياضة</h3>
                         <p>تيشيرت رياضي خفيف الوزن بطبعة ثلاثية الأبعاد</p>
                         <div class="product-price">
-                            <span class="price">85 ر.س</span>
+                            <span class="price">229 <span class="old-price">279</span></span>
                             <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> أضف للسلة</button>
                         </div>
                     </div>
@@ -1744,7 +1935,7 @@
                         <h3>قبعة بيسبول مطرزة</h3>
                         <p>قبعة بيسبول قابلة للتعديل بتطريز مخصص</p>
                         <div class="product-price">
-                            <span class="price">60 ر.س</span>
+                            <span class="price">149</span>
                             <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> أضف للسلة</button>
                         </div>
                     </div>
@@ -1757,7 +1948,7 @@
                         <h3>حقيبة قماشية مخصصة</h3>
                         <p>حقيبة قماشية متعددة الاستخدامات بطباعة مخصصة</p>
                         <div class="product-price">
-                            <span class="price">95 ر.س</span>
+                            <span class="price">179 <span class="old-price">219</span></span>
                             <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> أضف للسلة</button>
                         </div>
                     </div>
@@ -1770,7 +1961,7 @@
                         <h3>هودي شبابي</h3>
                         <p>هودي شبابي بطبعة غرافيكية جريئة</p>
                         <div class="product-price">
-                            <span class="price">130 ر.س</span>
+                            <span class="price">299 <span class="old-price">349</span></span>
                             <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> أضف للسلة</button>
                         </div>
                     </div>
@@ -1779,7 +1970,59 @@
         </div>
     </section>
 
-    <!-- Team Section - المحسّن -->
+    <!-- Features Section -->
+    <section class="features section">
+        <div class="container">
+            <h2 class="section-title">لماذا <span class="text-gradient">تختارنا؟</span></h2>
+            <p class="text-center mb-20">نقدم لكم أفضل الخدمات بمعايير الجودة العالمية</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>جودة ممتازة</h3>
+                    <p>نستخدم أفضل مواد الطباعة التي تدوم طويلاً وتحافظ على ألوانها</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>شحن سريع</h3>
+                    <p>توصيل خلال 24-48 ساعة في جميع أنحاء المغرب</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>دفع آمن</h3>
+                    <p>نظام دفع آمن ومحمي لضمان سلامة معاملاتك</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>دعم فني</h3>
+                    <p>فريق دعم متاح على مدار الساعة لمساعدتك</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>تصاميم فريدة</h3>
+                    <p>فريق تصميم محترف يقدم أفكاراً إبداعية تناسب ذوقك</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3>أسعار تنافسية</h3>
+                    <p>أفضل الأسعار مع خصومات خاصة للطلبات الكبيرة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
     <section class="team section" id="team">
         <div class="container">
             <h2 class="section-title">فريق <span class="text-gradient">العمل</span></h2>
@@ -1790,8 +2033,8 @@
                         <i class="fas fa-lightbulb"></i>
                     </div>
                     <h3>نزار</h3>
-                    <p class="position">المدير التنفيذي</p>
-                    <p class="bio">خبرة أكثر من 10 سنوات في مجال الطباعة والتصميم، يقود الفريق برؤية إبداعية واستراتيجية واضحة.</p>
+                    <p class="position">المدير الطلبات</p>
+                    <p class="bio">خبرة أكثر من 7 سنوات في مجال الطباعة والتصميم، يقود الفريق برؤية إبداعية واستراتيجية واضحة و لديه خبرة برمجية و أمن سيبيراني  حيث يساعد ذلك على حماية معلومات و بيانات المستخد.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -1803,7 +2046,7 @@
                         <i class="fas fa-palette"></i>
                     </div>
                     <h3>أسامة</h3>
-                    <p class="position">رئيس قسم التصميم</p>
+                    <p class="position">مدير شغل و تصاميم</p>
                     <p class="bio">مصمم جرافيك محترف مع شغف للتفاصيل والإبداع، يحول الأفكار إلى تصاميم مذهلة تلهم العملاء.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1876,6 +2119,7 @@
     <section class="faq section">
         <div class="container">
             <h2 class="section-title">أسئلة <span class="text-gradient">شائعة</span></h2>
+            <p class="text-center mb-20">إجابات على أكثر الأسئلة التي تهم عملائنا</p>
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question">ما هي مدة تنفيذ الطلب؟</div>
@@ -1892,13 +2136,13 @@
                 <div class="faq-item">
                     <div class="faq-question">ما هي طرق الدفع المتاحة؟</div>
                     <div class="faq-answer">
-                        <p>نحن نقبل الدفع عبر بطاقات الائتمان، التحويل البنكي، ومدى. كما نوفر خدمة الدفع عند الاستلام لبعض المناطق.</p>
+                        <p>نحن نقبل الدفع عبر cach plus ،كما نوفر خدمة الدفع عند الاستلام لبعض المناطق.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">كيف أطلب تصميم مخصص؟</div>
                     <div class="faq-answer">
-                        <p>يمكنك التواصل معنا عبر نموذج الاتصال أو الواتساب وسيقوم فريق التصميم بمساعدتك في إنشاء التصميم الذي تريده.</p>
+                        <p>يمكنك التواصل معنا عبر الواتساب أو الإنستغرام أو بريد الإلكتروني وسيقوم فريق التصميم بمساعدتك في إنشاء التصميم الذي تريده.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -1907,20 +2151,12 @@
                         <p>نعم، نقدم خصومات تصل إلى 30% للطلبات الكبيرة التي تزيد عن 50 قطعة. تواصل معنا لمعرفة التفاصيل.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter section">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>اشترك في نشرتنا البريدية</h2>
-                <p>احصل على آخر العروض والتخفيضات وأحدث التصاميم مباشرة إلى بريدك الإلكتروني</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
-                    <button type="submit">اشترك الآن</button>
-                </form>
+                <div class="faq-item">
+                    <div class="faq-question">ما هي أنواع الطباعة التي تقدمونها؟</div>
+                    <div class="faq-answer">
+                        <p>نقدم جميع أنواع الطباعة بما في ذلك الطباعة الرقمية، الطباعة الحريرية، الطباعة بالحرارة.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1937,7 +2173,7 @@
                         </div>
                         <div class="contact-text">
                             <h3>العنوان</h3>
-                            <p>شارع الملك فهد، الرياض، المملكة العربية السعودية</p>
+                            <p>بني مكادة، طنجة، المغرب</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1946,8 +2182,8 @@
                         </div>
                         <div class="contact-text">
                             <h3>الهاتف</h3>
-                            <p>+966 50 123 4567</p>
-                            <p>+966 11 234 5678</p>
+                            <p>+212 780 636 729</p>
+                            <p>+212 631 614 112</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1956,8 +2192,7 @@
                         </div>
                         <div class="contact-text">
                             <h3>البريد الإلكتروني</h3>
-                            <p>info@inkyoustyle.com</p>
-                            <p>support@inkyoustyle.com</p>
+                            <p>InkYouStyle@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1966,31 +2201,9 @@
                         </div>
                         <div class="contact-text">
                             <h3>ساعات العمل</h3>
-                            <p>الأحد - الخميس: 9 ص - 6 م</p>
-                            <p>الجمعة - السبت: مغلق</p>
+                            <p>الإثنين - الأحد: 9 ص - 11 م</p>
                         </div>
                     </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">الاسم الكامل</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">البريد الإلكتروني</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">رقم الهاتف</label>
-                            <input type="tel" id="phone" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">الرسالة</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">إرسال الرسالة</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -2007,10 +2220,10 @@
                     </div>
                     <p>نحن شركة متخصصة في طباعة التصاميم على الملابس وبيع المنتجات الجاهزة. نقدم حلولاً مبتكرة للطباعة على مختلف أنواع الملابس بجودة عالية وأسعار تنافسية.</p>
                     <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-snapchat"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -2036,12 +2249,7 @@
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>النشرة البريدية</h3>
-                    <p>اشترك في نشرتنا البريدية لتصلك آخر العروض والتصاميم الجديدة.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="بريدك الإلكتروني" class="form-control" required>
-                        <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">اشترك الآن</button>
-                    </form>
+                    <h3>طرق الدفع</h3>
                     <div class="payment-methods">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard">
@@ -2060,6 +2268,11 @@
     <div class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/212631614112" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
         // Mobile Menu Toggle
@@ -2144,26 +2357,6 @@
             showSlide(nextSlide);
         }, 5000);
 
-        // Form Submission
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
-            // Here you would typically send the data to a server
-            // For demo purposes, we'll just show an alert
-            alert(`شكراً ${name} على تواصلك معنا! سنرد عليك في أقرب وقت ممكن.`);
-            
-            // Reset form
-            contactForm.reset();
-        });
-
         // Add to Cart Functionality
         const addToCartBtns = document.querySelectorAll('.add-to-cart');
         
@@ -2231,9 +2424,29 @@
             });
         });
 
+        // Offer Timer
+        function updateTimer() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            
+            const diff = endOfDay - now;
+            
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.querySelector('.hours').textContent = Math.floor(hours).toString().padStart(2, '0');
+            document.querySelector('.minutes').textContent = Math.floor(minutes).toString().padStart(2, '0');
+            document.querySelector('.seconds').textContent = Math.floor(seconds).toString().padStart(2, '0');
+        }
+        
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
         // Animate Elements on Scroll
         const animateOnScroll = function() {
-            const elements = document.querySelectorAll('.service-card, .product-card, .team-member, .contact-item, .contact-form');
+            const elements = document.querySelectorAll('.service-card, .product-card, .team-member, .contact-item, .feature-card');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -2247,7 +2460,7 @@
         };
 
         // Set initial state for animated elements
-        document.querySelectorAll('.service-card, .product-card, .team-member, .contact-item, .contact-form').forEach(element => {
+        document.querySelectorAll('.service-card, .product-card, .team-member, .contact-item, .feature-card').forEach(element => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(30px)';
             element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -2255,6 +2468,13 @@
 
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
+
+        // Welcome Message
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                alert('مرحباً بكم في InkYouStyle! احصل على خصم 10% على أول طلب لك باستخدام الكود: WELCOME10');
+            }, 3000);
+        });
     </script>
 </body>
 </html>
